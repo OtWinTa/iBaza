@@ -5,7 +5,7 @@ unit MetaUnit;
 interface
 
 uses
-  Classes, SysUtils, Connect, Referen;
+  Classes, SysUtils, Connect;
 
 type
 
@@ -20,11 +20,13 @@ type
     constructor Create(n, c: String; w: Integer; f_k_t, f_k_r: String);
   end;
 
+  { TTableInf }
+
   TTableInf = class(TMetDat)
     Fields: array of TFieldInto;
     Name, Caption: String;
     constructor Create(f: array of TFieldInto; n, c: String);
-    procedure ShowTable();
+    procedure ShowTable(AIndex: integer);
 
   private
     { private declarations }
@@ -36,6 +38,9 @@ var
   Tables: array of TTableInf;
 
 implementation
+
+uses
+  Referen;
 
 constructor TFieldInto.Create(n, c: String; w: Integer; f_k_t, f_k_r: String);
 begin
@@ -58,12 +63,13 @@ begin
   Caption := c;
 end;
 
-procedure TTableInf.ShowTable();
+procedure TTableInf.ShowTable(AIndex: integer);
 var
   rows, innerjoins: String;
   i: Integer;
 begin
   ReferenForm := TReferenForm.Create(nil);
+  ReferenForm.TableIndex:=AIndex;
   rows := '';
   innerjoins := '';
   for i := 0 to High(Fields) do begin
@@ -74,12 +80,9 @@ begin
       rows := rows + ',' + Fields[i].Name;
   end;
   Delete(rows, 1, 1);
-  ReferenForm.SQLQuery.SQL.Text := 'SELECT ' + rows + ' FROM ' + Name + ' ' + innerjoins;
-  ReferenForm.SQLQuery.Open;
-  for i := 0 to High(Fields) do begin
-    ReferenForm.DBGrid.Columns[i].Title.Caption := Fields[i].Caption;
-    ReferenForm.DBGrid.Columns[i].Width := Fields[i].Width * 10;
-  end;
+
+  TReferenForm.MakeQuery(AIndex);
+
   ReferenForm.Caption := Caption;
   ReferenForm.Show;
 end;

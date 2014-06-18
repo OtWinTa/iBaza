@@ -1,0 +1,229 @@
+unit Filtres;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, MetaUnit, Connect, StdCtrls, Forms, math,
+  ExtCtrls, Controls, Buttons, Dialogs;
+
+Type
+
+  TQuery = record
+    Str : string;
+    Param : array of string;
+  end;
+
+  TdelProc = procedure (Sender : TObject) of object;
+
+  { TFilter }
+
+  TFilter = class
+    Panel : TPanel ;
+    FieldName, CompareOp: TComboBox;
+    Enter: TEdit;
+    DelButton: TSpeedButton;
+    constructor Create(
+      i, TableIndex: integer; AControl: TWinControl; Del: TdelProc);
+  end;
+
+  { TFilters }
+
+  TFilters = class
+    ArFltrs: array of TFilter;
+
+    BtnApply: TSpeedButton;
+
+    BtnCreate : TspeedButton;
+    ScrollBox : TScrollBox;
+    TableIndex : integer;
+
+    constructor Create(AForm: TForm; x, y, AWidth, ATableIndex: Integer);
+
+    function GetQuery: TQuery;
+    procedure ShowQuery (Sender : TObject);
+    procedure AddFilter (Sender : TObject);
+    procedure Destroy (Sender : TObject);
+  end;
+
+implementation
+
+{ TFilter }
+
+constructor TFilter.Create(
+  i, TableIndex: integer; AControl: TWinControl; Del: TdelProc);
+var
+  j : integer;
+  Table: TTableInf;
+begin
+  Table:= Tables[TableIndex];
+  Panel:=TPanel.Create(AControl) ;
+  FieldName:=TComboBox.Create(Panel);
+  DelButton:=TSpeedButton.Create(Panel);
+  CompareOp := TComboBox.Create(Panel);
+  Enter := TEdit.Create(Panel);
+
+  with Panel do begin
+    Parent:=AControl;
+    top:= 40*(i+1);
+    Left:=0;
+    Height:=40;
+    BevelOuter:=bvNone;
+    Width:=AControl.Width- 25;
+  end;
+
+  with FieldName do begin
+    Parent:=Panel ;
+    top:=10;
+    Left:=30;
+    Width:=100;
+    ReadOnly:=True;
+    Tag:=i;
+    for j:=0 to High(Table.Fields) do
+      Items.Add(Table.Fields[j].Caption);
+    ItemIndex:=0;
+  end;
+
+  with CompareOp do begin
+    Parent:=Panel;
+    top:=10;
+    Left:=180;
+    Width:=100;
+    ReadOnly:=True;
+    Items.AddStrings(['>','<','=','>=','<=','Начиается с', 'Содержит']);
+    ItemIndex:=0;
+  end;
+
+  with Enter do begin
+    Parent:=Panel;
+    top:= 10;
+    Left:=330;
+    Width:=100;
+  end;
+
+  with DelButton do begin
+    Parent:=Panel;
+    top:= 10;
+    Left:=480;
+    Width:=23;
+    Height:=23;
+    Tag:=i-1;
+    OnClick:=Del;
+  end;
+
+  AControl.Height:=AControl.Height + 40;
+end;
+
+{ TFilters }
+
+constructor TFilters.Create(AForm: TForm; x, y, AWidth, ATableIndex: Integer);
+begin
+  ScrollBox:= TScrollBox.Create(AForm);
+  with ScrollBox do begin
+    Parent:=AForm;
+    Top:=y;
+    Height:=50;
+    Width:=AWidth;
+    Constraints.MaxHeight:=50*4;
+    Left:=x;
+    Align:=alTop;
+  end;
+  BtnCreate:= TSpeedButton.Create(ScrollBox);
+  with BtnCreate do begin
+    Parent:=ScrollBox;
+    Top:=8;
+    Height:=25;
+    Width:=25;
+    Left:=ScrollBox.Width-33;
+    Caption := '+';
+    OnClick:=@AddFilter;
+  end;
+
+  BtnApply:= TSpeedButton.Create(ScrollBox);
+  with BtnApply do begin
+    Parent:=ScrollBox;
+    Top:=8;
+    Height:=25;
+    Width:=25;
+    Left:=ScrollBox.Width-99;
+    OnClick:=@ShowQuery;
+  end;
+
+  TableIndex:=ATableIndex;
+end;
+
+
+function TFilters.GetQuery: TQuery;
+  var
+  i : integer;
+  WFieldName, WAction, WTable: string;
+begin
+  SetLength(Result.Param,Length(ArFltrs));
+  if Length(ArFltrs) = 0 then begin
+    Result.Str:='';
+    Exit(Result);
+  end;
+
+  Result.Str:=' where ' ;
+  //for i:=0 to High(ArFltrs) do
+  //  with ArFltrs[i] do begin
+  //  if ATable.Fields[FieldName.ItemIndex].Ref=nil then begin
+  //      WTable:=FTable.Name;
+  //      WFieldName:=ATable.Fields[FieldName.ItemIndex].Name;
+  //    end
+  //    else begin
+  //      with ATable.Fields[FieldName.ItemIndex].Ref do begin
+  //        WTable:=TableName;
+  //        WFieldName:=FieldName;
+  //      end;
+  //    end;
+
+ {     case DoField.Items[DoField.ItemIndex] of
+        'Содержит' : WAction:='like';
+        'Начинается с' : WAction:='starting with'
+        else
+          WAction:=DoField.Items[DoField.ItemIndex];
+      end;
+
+      Result.Param[i]:=FEdit.Text;
+      if DoField.Items[DoField.ItemIndex] = 'Содержит' then
+        Result.Param[i]:='%'+Result.Param[i]+'%';
+
+      Result.Str+=Format(' %s.%s %s :param%d and ', [WTable ,WFieldName, WAction, i ] );
+    end;
+  }
+  Delete(Result.Str, Length(Result.Str) - 3, 4);
+end;
+
+procedure TFilters.ShowQuery(Sender: TObject);
+begin
+  ShowMessage(GetQuery());
+end;
+
+
+procedure TFilters.AddFilter(Sender: TObject);
+begin
+  SetLength(ArFltrs,Length(ArFltrs) + 1);
+  ArFltrs[High(ArFltrs)]:=
+    TFilter.Create(Length(ArFltrs), TableIndex, ScrollBox, @Destroy);
+end;
+
+
+procedure TFilters.Destroy(Sender: TObject);
+var
+  j,i : integer;
+begin
+  j:=(Sender as TSpeedButton).Tag;
+  ArFltrs[j].Panel.Destroy;
+  for i := j to High(ArFltrs)-1 do
+    begin
+      ArFltrs[i]:=ArFltrs[i+1];
+      ArFltrs[i].DelButton.Tag:=i;
+      ArFltrs[i].Panel.Top:=ArFltrs[i].Panel.Top-30;
+    end;
+  SetLength(ArFltrs,Length(ArFltrs)-1);
+end;
+
+end.
+

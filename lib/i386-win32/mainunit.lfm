@@ -7,7 +7,7 @@ object MainForm: TMainForm
   Color = 10651597
   Menu = MainMenu
   OnShow = FormShow
-  LCLVersion = '1.0.12.0'
+  LCLVersion = '1.2.0.3'
   object MainMenu: TMainMenu
     left = 5
     object MenuFile: TMenuItem

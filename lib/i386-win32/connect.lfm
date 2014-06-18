@@ -1,11 +1,11 @@
 object ConnectModule: TConnectModule
   OldCreateOrder = False
   Height = 50
-  HorizontalOffset = 1192
-  VerticalOffset = 636
+  HorizontalOffset = 1692
+  VerticalOffset = 632
   Width = 124
   object IBConnection: TIBConnection
-    Connected = True
+    Connected = False
     LoginPrompt = False
     DatabaseName = 'SCHEDULE.FDB'
     KeepConnection = False

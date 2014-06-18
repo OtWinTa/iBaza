@@ -5,26 +5,28 @@ unit MetaUnit;
 interface
 
 uses
-  Classes, SysUtils, Connect, Referen;
+  Classes, SysUtils, Connect;
 
 type
 
-  Tmeta = class
+  TMetDat = class
   public
     procedure AddTable(tn, tc: String; count: Integer; rows_n: array of String; rows_c: array of Integer; f_k: array of String);
   end;
 
-  TFieldInto = class(Tmeta)
+  TFieldInto = class(TMetDat)
     Name, Caption, ForeignKeyTable, ForeignKeyRow: String;
     Width: Integer;
     constructor Create(n, c: String; w: Integer; f_k_t, f_k_r: String);
   end;
 
-  TTableInfo = class(Tmeta)
+  { TTableInf }
+
+  TTableInf = class(TMetDat)
     Fields: array of TFieldInto;
     Name, Caption: String;
     constructor Create(f: array of TFieldInto; n, c: String);
-    procedure ShowTable();
+    procedure ShowTable(AIndex: integer);
 
   private
     { private declarations }
@@ -33,9 +35,12 @@ type
   end;
 
 var
-  Tables: array of TTableInfo;
+  Tables: array of TTableInf;
 
 implementation
+
+uses
+  Referen;
 
 constructor TFieldInto.Create(n, c: String; w: Integer; f_k_t, f_k_r: String);
 begin
@@ -46,7 +51,7 @@ begin
   ForeignKeyRow := f_k_r;
 end;
 
-constructor TTableInfo.Create(f: array of TFieldInto; n, c: String);
+constructor TTableInf.Create(f: array of TFieldInto; n, c: String);
 var
   i: Integer;
 begin
@@ -58,12 +63,13 @@ begin
   Caption := c;
 end;
 
-procedure TTableInfo.ShowTable();
+procedure TTableInf.ShowTable(AIndex: integer);
 var
   rows, innerjoins: String;
   i: Integer;
 begin
   ReferenForm := TReferenForm.Create(nil);
+  ReferenForm.TableIndex:=AIndex;
   rows := '';
   innerjoins := '';
   for i := 0 to High(Fields) do begin
@@ -84,7 +90,7 @@ begin
   ReferenForm.Show;
 end;
 
-procedure Tmeta.AddTable(tn, tc: String; count: Integer; rows_n: array of String; rows_c: array of Integer; f_k: array of String);
+procedure TMetDat.AddTable(tn, tc: String; count: Integer; rows_n: array of String; rows_c: array of Integer; f_k: array of String);
 var
   i, k: Integer;
   Fields: array of TFieldInto;
@@ -98,7 +104,7 @@ begin
     inc(k);
   end;
   SetLength(Tables, Length(Tables)+1);
-  Tables[High(Tables)] := TTableInfo.Create(Fields, tn, tc);
+  Tables[High(Tables)] := TTableInf.Create(Fields, tn, tc);
 end;
 
 end.

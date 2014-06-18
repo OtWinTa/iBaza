@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, sqldb, db, BufDataset, FileUtil, Forms, Controls, Graphics,
-  Dialogs, DBGrids, StdCtrls;
+  Dialogs, DBGrids, StdCtrls, Filtres;
 
 type
 
@@ -16,10 +16,11 @@ type
     Datasource: TDatasource;
     DBGrid: TDBGrid;
     SQLQuery: TSQLQuery;
+    procedure FormCreate(Sender: TObject);
   private
-    { private declarations }
+    Filters : TFilters;
   public
-    { public declarations }
+    TableIndex : integer;
   end;
 
 var
@@ -28,6 +29,13 @@ var
 implementation
 
 {$R *.lfm}
+
+{ TReferenForm }
+
+procedure TReferenForm.FormCreate(Sender: TObject);
+begin
+  Filters:= TFilters.Create(Self, 0, 0, Width, TableIndex );
+end;
 
 end.
 

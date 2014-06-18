@@ -41,7 +41,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="5">
+    <Units Count="6">
       <Unit0>
         <Filename Value="SQLAdmin.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -76,6 +76,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="MetaUnit"/>
       </Unit4>
+      <Unit5>
+        <Filename Value="filtres.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Filtres"/>
+      </Unit5>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
