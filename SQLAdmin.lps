@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="6">
+      <Unit0>
+        <Filename Value="SQLAdmin.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SQLAdmin"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="53" Y="21"/>
+        <UsageCount Value="34"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="..\..\iBaza\mainunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="MainUnit"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="47"/>
+        <CursorPos X="49" Y="54"/>
+        <UsageCount Value="34"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="connect.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ConnectModule"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="Connect"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="17" Y="15"/>
+        <UsageCount Value="34"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="referen.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ReferenForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Referen"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="4" Y="10"/>
+        <UsageCount Value="34"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="metaunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MetaUnit"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="58"/>
+        <CursorPos X="60" Y="74"/>
+        <UsageCount Value="32"/>
+        <Loaded Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="C:\lazarus\lcl\include\menuitem.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="72"/>
+        <CursorPos X="41" Y="83"/>
+        <UsageCount Value="10"/>
+      </Unit5>
+    </Units>
+    <General>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="metaunit.pas"/>
+        <Caret Line="89" Column="52" TopLine="72"/>
+      </Position1>
+      <Position2>
+        <Filename Value="metaunit.pas"/>
+        <Caret Line="86" Column="80" TopLine="72"/>
+      </Position2>
+      <Position3>
+        <Filename Value="metaunit.pas"/>
+        <Caret Line="82" Column="9" TopLine="72"/>
+      </Position3>
+      <Position4>
+        <Filename Value="metaunit.pas"/>
+        <Caret Line="86" Column="58" TopLine="72"/>
+      </Position4>
+      <Position5>
+        <Filename Value="metaunit.pas"/>
+        <Caret Line="89" Column="42" TopLine="74"/>
+      </Position5>
+      <Position6>
+        <Filename Value="metaunit.pas"/>
+        <Caret Line="86" Column="53" TopLine="72"/>
+      </Position6>
+      <Position7>
+        <Filename Value="metaunit.pas"/>
+        <Caret Line="13" Column="82" TopLine="5"/>
+      </Position7>
+      <Position8>
+        <Filename Value="referen.pas"/>
+        <Caret Line="15" Column="77" TopLine="10"/>
+      </Position8>
+      <Position9>
+        <Filename Value="referen.pas"/>
+        <Caret Line="16" Column="77" TopLine="9"/>
+      </Position9>
+      <Position10>
+        <Filename Value="referen.pas"/>
+        <Caret Line="15" Column="77" TopLine="9"/>
+      </Position10>
+      <Position11>
+        <Filename Value="metaunit.pas"/>
+        <Caret Line="91" Column="52" TopLine="58"/>
+      </Position11>
+      <Position12>
+        <Filename Value="metaunit.pas"/>
+        <Caret Line="92" Column="79" TopLine="75"/>
+      </Position12>
+      <Position13>
+        <Filename Value="metaunit.pas"/>
+        <Caret Line="77" Column="89" TopLine="64"/>
+      </Position13>
+      <Position14>
+        <Filename Value="metaunit.pas"/>
+        <Caret Line="72" Column="157" TopLine="60"/>
+      </Position14>
+      <Position15>
+        <Filename Value="metaunit.pas"/>
+        <Caret Line="85" Column="37" TopLine="70"/>
+      </Position15>
+      <Position16>
+        <Filename Value="referen.pas"/>
+        <Caret Line="15" Column="37" TopLine="10"/>
+      </Position16>
+      <Position17>
+        <Filename Value="metaunit.pas"/>
+        <Caret Line="85" Column="28" TopLine="74"/>
+      </Position17>
+      <Position18>
+        <Filename Value="metaunit.pas"/>
+        <Caret Line="74" Column="7" TopLine="65"/>
+      </Position18>
+      <Position19>
+        <Filename Value="referen.pas"/>
+        <Caret Line="19" Column="18" TopLine="10"/>
+      </Position19>
+      <Position20>
+        <Filename Value="referen.pas"/>
+        <Caret Line="18" Column="18" TopLine="10"/>
+      </Position20>
+      <Position21>
+        <Filename Value="..\..\iBaza\mainunit.pas"/>
+        <Caret Line="82" Column="39" TopLine="58"/>
+      </Position21>
+      <Position22>
+        <Filename Value="..\..\iBaza\mainunit.pas"/>
+        <Caret Line="24" Column="34" TopLine="5"/>
+      </Position22>
+      <Position23>
+        <Filename Value="..\..\iBaza\mainunit.pas"/>
+        <Caret Line="23" Column="28" TopLine="6"/>
+      </Position23>
+      <Position24>
+        <Filename Value="..\..\iBaza\mainunit.pas"/>
+        <Caret Line="26" Column="30" TopLine="8"/>
+      </Position24>
+      <Position25>
+        <Filename Value="..\..\iBaza\mainunit.pas"/>
+        <Caret Line="23" Column="28" TopLine="8"/>
+      </Position25>
+      <Position26>
+        <Filename Value="..\..\iBaza\mainunit.pas"/>
+        <Caret Line="21" Column="19" TopLine="5"/>
+      </Position26>
+      <Position27>
+        <Filename Value="..\..\iBaza\mainunit.pas"/>
+        <Caret Line="16" Column="51" TopLine="3"/>
+      </Position27>
+      <Position28>
+        <Filename Value="..\..\iBaza\mainunit.pas"/>
+        <Caret Line="8" Column="37" TopLine="1"/>
+      </Position28>
+      <Position29>
+        <Filename Value="metaunit.pas"/>
+        <Caret Line="12" Column="8" TopLine="8"/>
+      </Position29>
+      <Position30>
+        <Filename Value="metaunit.pas"/>
+        <Caret Line="23" Column="13" TopLine="9"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectSession>
+</CONFIG>
